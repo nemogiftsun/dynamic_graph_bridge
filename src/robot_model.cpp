@@ -85,7 +85,7 @@ void RosRobotModel::loadFromParameterServer()
 
     rosInit (false);
     std::string robotDescription;
-    ros::param::param<std::string> ("/robot_description", robotDescription, "");
+    ros::param::param<std::string> ("/robot_description_sot", robotDescription, "");
 
     if (robotDescription.empty ())
         throw std::runtime_error("No model available as ROS parameter. Fail.");
