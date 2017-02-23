@@ -37,6 +37,7 @@ namespace dynamicgraph
     signalVectorIn_t state_;
     realtime_tools::RealtimePublisher<sensor_msgs::JointState> publisher_;
     sensor_msgs::JointState jointState_;
+    sensor_msgs::JointState jointStateCpy_;
     dynamicgraph::SignalTimeDependent<int,int> trigger_;
     ros::Duration rate_;
     ros::Time lastPublicated_;

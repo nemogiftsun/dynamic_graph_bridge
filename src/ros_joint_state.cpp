@@ -174,7 +174,15 @@ namespace dynamicgraph
 	for (std::size_t i = 0; i < s; ++i)
 	  jointState_.position[i] = state_.access (t) (i);
 
-	publisher_.msg_ = jointState_;
+        jointStateCpy_.name.resize(s-6);
+        jointStateCpy_.position.resize(s-6);
+        jointStateCpy_.header = jointState_.header;
+
+	for (std::size_t i = 0; i < s-6; i++){
+	  jointStateCpy_.position[i] = jointState_.position[i+6];
+          jointStateCpy_.name[i] = jointState_.name[i+6]; } 
+
+	publisher_.msg_ = jointStateCpy_;
 	publisher_.unlockAndPublish ();
       }
     return dummy;

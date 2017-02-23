@@ -29,6 +29,7 @@ catkin_package(CATKIN_DEPENDS message_runtime)
 
 ## LAAS cmake submodule part
 set(PROJECT_DESCRIPTION "Dynamic graph bridge library")
+set(Python_ADDITIONAL_VERSIONS 2.7)
 set(PROJECT_NAME dynamic_graph_bridge)
 set(PROJECT_URL "")
 
