@@ -13,6 +13,7 @@
 # include "geometry_msgs/Transform.h"
 # include "geometry_msgs/TransformStamped.h"
 # include "geometry_msgs/Twist.h"
+# include "geometry_msgs/Pose.h"
 # include "geometry_msgs/TwistStamped.h"
 # include "geometry_msgs/Vector3Stamped.h"
 
@@ -37,6 +38,7 @@ namespace dynamicgraph
   {
     class Vector3 {};
     class Twist {};
+    class Pose {};
   } // end of namespace specific.
 
   /// \brief SotToRos trait type.
@@ -189,6 +191,29 @@ namespace dynamicgraph
       s.setConstant (v);
     }
   };
+
+  template <>
+  struct SotToRos<specific::Pose>
+  {
+    typedef Vector sot_t;
+    typedef geometry_msgs::Pose ros_t;
+    typedef geometry_msgs::PoseConstPtr ros_const_ptr_t;
+    typedef dynamicgraph::SignalTimeDependent<sot_t, int> signal_t;
+    typedef dynamicgraph::SignalPtr<sot_t, int> signalIn_t;
+    typedef boost::function<sot_t& (sot_t&, int)> callback_t;
+
+    static const char* signalTypeName;
+
+    template <typename S>
+    static void setDefault(S& s)
+    {
+      Vector v (7);
+      v.setZero ();
+      s.setConstant (v);
+    }
+  };
+
+
 
   // Stamped vector3
   template <>

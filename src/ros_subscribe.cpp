@@ -91,6 +91,8 @@ namespace dynamicgraph
 	    (signal, topic);
 	else if (type == "twist")
 	  entity.add<specific::Twist> (signal, topic);
+	else if (type == "pose")
+	  entity.add<specific::Pose> (signal, topic);
 	else if (type == "twistStamped")
 	  entity.add<std::pair<specific::Twist, dg::Vector> >
 	    (signal, topic);
@@ -136,7 +138,7 @@ namespace dynamicgraph
       "  Input:\n"
       "    - type: string among ['double', 'matrix', 'vector', 'vector3',\n"
       "                          'vector3Stamped', 'matrixHomo', 'matrixHomoStamped',\n"
-      "                          'twist', 'twistStamped'],\n"
+      "                          'twist', 'twistStamped','pose'],\n"
       "    - signal: the signal name in dynamic-graph,\n"
       "    - topic:  the topic name in ROS.\n"
       "\n";

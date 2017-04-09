@@ -169,7 +169,6 @@ namespace dynamicgraph
 	jointState_.position.resize (s);
 	for (std::size_t i = 0; i < s; ++i)
 	  jointState_.position[i] = state_.access (t) ((unsigned int)i);
-
         jointStateCpy_.name.resize(s-6);
         jointStateCpy_.position.resize(s-6);
         jointStateCpy_.header = jointState_.header;

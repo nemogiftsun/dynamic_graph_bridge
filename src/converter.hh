@@ -178,6 +178,34 @@ namespace dynamicgraph
     dst (5) = src.angular.z;
   }
 
+  // Pose
+  SOT_TO_ROS_IMPL(specific::Pose)
+  {
+    if (src.size () != 7)
+      throw std::runtime_error ("failed to convert invalid pose");
+    dst.position.x = src (0);
+    dst.position.y = src (1);
+    dst.position.z = src (2);
+    dst.orientation.x = src (3);
+    dst.orientation.y = src (4);
+    dst.orientation.z = src (5);
+    dst.orientation.w = src (6);
+  }
+
+  ROS_TO_SOT_IMPL(specific::Pose)
+  {
+    dst.resize (7);
+    dst (0) = src.position.x;
+    dst (1) = src.position.y;
+    dst (2) = src.position.z;
+    dst (3) = src.orientation.x;
+    dst (4) = src.orientation.y;
+    dst (5) = src.orientation.z;
+    dst (6) = src.orientation.w;
+  }
+
+
+
 
   /// \brief This macro generates a converter for a stamped type from
   /// dynamic-graph to ROS.  I.e. A data associated with its
@@ -223,7 +251,7 @@ namespace dynamicgraph
   DG_BRIDGE_MAKE_SHPTR_IMPL(Matrix);
   DG_BRIDGE_MAKE_SHPTR_IMPL(sot::MatrixHomogeneous);
   DG_BRIDGE_MAKE_SHPTR_IMPL(specific::Twist);
-
+  DG_BRIDGE_MAKE_SHPTR_IMPL(specific::Pose);
   /// \brief This macro generates a converter for a stamped type.
   /// I.e. A data associated with its timestamp.
   ///
@@ -242,6 +270,7 @@ namespace dynamicgraph
   DG_BRIDGE_MAKE_STAMPED_IMPL(specific::Vector3, vector, ;);
   DG_BRIDGE_MAKE_STAMPED_IMPL(sot::MatrixHomogeneous, transform, ;);
   DG_BRIDGE_MAKE_STAMPED_IMPL(specific::Twist, twist, ;);
+
 
   /// \brief This macro generates a converter for a shared pointer on
   /// a stamped type.  I.e. A data associated with its timestamp.
@@ -262,7 +291,6 @@ namespace dynamicgraph
   DG_BRIDGE_MAKE_STAMPED_SHPTR_IMPL(specific::Vector3, vector, ;);
   DG_BRIDGE_MAKE_STAMPED_SHPTR_IMPL(sot::MatrixHomogeneous, transform, ;);
   DG_BRIDGE_MAKE_STAMPED_SHPTR_IMPL(specific::Twist, twist, ;);
-
 
   /// \brief If an impossible/unimplemented conversion is required, fail.
   ///

@@ -10,6 +10,7 @@ namespace dynamicgraph
   const char* SotToRos<specific::Vector3>::signalTypeName = "Vector3";
   const char* SotToRos<sot::MatrixHomogeneous>::signalTypeName = "MatrixHomo";
   const char* SotToRos<specific::Twist>::signalTypeName = "Twist";
+  const char* SotToRos<specific::Pose>::signalTypeName = "Pose";
   const char* SotToRos
   <std::pair<specific::Vector3, Vector> >::signalTypeName
   = "Vector3Stamped";
@@ -19,5 +20,4 @@ namespace dynamicgraph
   const char* SotToRos
   <std::pair<specific::Twist, Vector> >::signalTypeName
   = "Twist";
-
 } // end of namespace dynamicgraph.
